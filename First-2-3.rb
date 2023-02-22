@@ -1,5 +1,6 @@
-def vzaimprost(one, two)
-	while one != two
+#определяет взаимно ли простые числа
+def vzaim_prost(one, two)
+	until one == two
 		if one > two
 			one -=two
 		end
@@ -10,8 +11,8 @@ def vzaimprost(one, two)
 	return one
 end
 
-
-def prost (arr,dannoe)
+#счиатет колличество эллементов массива, которые четные и взаимнопростые с данным 
+def chet_prost_s_dannim (arr,dannoe)
 	count =0
 	for i in arr do
 			if i % 2 == 0 
@@ -24,9 +25,10 @@ def prost (arr,dannoe)
 end
 #first
 arr = [15,20,3,4,5,17,21,20,2,1]
-puts prost(arr,15)
+puts chet_prost_s_dannim(arr,15)
 
-def maxcifr(chisla)
+#находит максимальную цифру числа
+def max_cifr(chisla)
 	max = -1
 	while chisla !=0
 		if (chisla%10) %3 !=0
@@ -39,13 +41,13 @@ def maxcifr(chisla)
 	return max
 end
 #second
-puts maxcifr(1234569)
+puts max_cifr(1234569)
 
-
-def sumcifr(dannoe)
+#находит сумму цифр числа
+def sum_cifr(dannoe)
 	sum = 0
 	while dannoe!=0
-		if dannoe%10 <5
+		unless dannoe%10 >=5
 			sum+=dannoe%10
 		end
 		dannoe/=10
@@ -53,8 +55,8 @@ def sumcifr(dannoe)
 	return sum
 end
 
-
-def maxproizv (arr, dannoe)
+#находит произведение суммы цифр числа и максимального не взаимнопростого с данным из масива
+def max_proizv (arr, dannoe)
 	max = arr[0]
 	for i in arr  do
 		if i > max
@@ -66,4 +68,4 @@ def maxproizv (arr, dannoe)
 	return(sumcifr(dannoe) * max)
 end
 arr2 = [1,2,3,4,5]
-puts maxproizv(arr2, 12) 
+puts max_proizv(arr2, 12) 
