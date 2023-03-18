@@ -4,14 +4,17 @@ class Student
    #attr_reader :name
    #attr_writer :name
    #инициилизирующая функция
-   def initialize(id,first_name, last_name, sur_name,phone,tg, mail, git)
-      @id = id
-      @first_name = first_name
-      @last_name = last_name
-      @sur_name = sur_name
-      @phone = phone
-      @tg = tg
-      @mail = mail
-      @git = git    
+   def initialize(options)
+      self.id = options[:id]
+      self.phone = options[:phone]
+      self.tg = options[:tg]
+      self.mail = options[:mail]
+      self.git = options[:git]   
    end
+
+   def self.valid_telephone?(number)
+      return true unless (number =~ /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/).nil?
+      false
+   end
+
 end
