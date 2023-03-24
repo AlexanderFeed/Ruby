@@ -4,4 +4,5 @@ sasha = Student.new(options)
 p sasha.first_name
 p sasha.last_name
 sasha.tg = "new TG"
-p sasha.tg
+p sasha.git
+p sasha.validate()

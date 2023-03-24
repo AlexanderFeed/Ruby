@@ -5,7 +5,7 @@ class Student
    #инициилизирующая функция
    def initialize(hash)
       if(hash[:id] == nil or hash[:first_name] == nil or hash[:last_name] == nil or hash[:sur_name] == nil)
-         raise " ID и ФИО обязательно!"
+         raise "ID и ФИО обязательно!"
       end
       set_id(hash[:id])
       set_first_name(hash[:first_name])
@@ -101,8 +101,31 @@ class Student
    end
 
 
+   def some_git?()
+      return git != ""
+   end
+   def some_phone?()
+      return phone != ""
+   end
+   def some_tg?()
+      return tg != ""
+   end
+   def some_mail?()
+      return mail != ""
+   end
+   def some_connect?()
+      return(some_mail?() and some_phone?() and some_mail?())
+   end
 
+   def validate()
+      return(some_connect?() and some_git?())
+   end
 
+   def set_contacts(contacts)
+      set_mail(contacts[:mail]) if(contacts[:mail] != nil)
+      set_phone(contacts[:phone]) if(contacts[:phone] != nil)
+      set_tg(contacts[:tg]) if(contacts[:tg] != nil)
+   end
 
    def self.valid_telephone?(number)
       return true unless (number =~ /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/).nil?
