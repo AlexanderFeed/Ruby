@@ -115,7 +115,7 @@ class Student
       return(some_mail?() and some_phone?() and some_mail?())
    end
 
-   def validate()
+   def validate?()
       return(some_connect?() and some_git?())
    end
 
