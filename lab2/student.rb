@@ -3,10 +3,22 @@ class Student
    attr_reader :id, :first_name, :last_name, :sur_name,:phone,:tg, :mail, :git
 
    #инициилизирующая функция
-   def initialize(hash)
-      if(hash[:id] == nil or hash[:first_name] == nil or hash[:last_name] == nil or hash[:sur_name] == nil)
-         raise "ID и ФИО обязательно!"
+   def initialize(hash:nil, string:nil)
+      if(hash != nil)
+         if(hash[:id] == nil or hash[:first_name] == nil or hash[:last_name] == nil or hash[:sur_name] == nil)
+            raise "ID и ФИО обязательно!"
+         else
+            constr_hash(hash)
+         end
+      elsif(string != nil)
+         splitted = string.split('|')
+         constr_hash({id:splitted[0], first_name:splitted[1], last_name:splitted[2], sur_name:splitted[3], phone:splitted[4], tg:splitted[5], mail:splitted[6], git:splitted[7]})
+      else
+         raise ArgumentError.new "Нет никаких данных. Введите их."
       end
+   end
+
+   def constr_hash(hash)
       self.id=hash[:id]
       self.first_name=hash[:first_name]
       self.last_name=hash[:last_name]
