@@ -8,5 +8,5 @@ require_relative 'student'
 #p sasha.git
 #p sasha.validate()
 #object1 = Student.new()
+option2 = "123|kek|nekek|netda|89886832818|hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/"
 object0 = Student.new(string:"123|kek|nekek|netda|89886832818|hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/")
-p object0.mail()

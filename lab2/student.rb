@@ -12,6 +12,9 @@ class Student
          end
       elsif(string != nil)
          splitted = string.split('|')
+         if splitted.length != 7 
+            raise ArgumentError.new "Wrong string format for constructor."
+         end
          constr_hash({id:splitted[0], first_name:splitted[1], last_name:splitted[2], sur_name:splitted[3], phone:splitted[4], tg:splitted[5], mail:splitted[6], git:splitted[7]})
       else
          raise ArgumentError.new "Нет никаких данных. Введите их."
