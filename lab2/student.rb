@@ -19,12 +19,13 @@ class Student
    end
 
    def constr_hash(hash)
-      self.id=hash[:id]
-      self.first_name=hash[:first_name]
-      self.last_name=hash[:last_name]
-      self.sur_name=hash[:sur_name]
-      self.git=hash[:git]
-      set_contacts([:mail,:phone,:tg])
+      self.id = hash[:id]
+      self.first_name = hash[:first_name]
+      self.last_name = hash[:last_name]
+      self.sur_name = hash[:sur_name]
+      self.git = hash[:git]
+      self.mail = hash[:mail]
+      #set_contacts([:mail,:phone,:tg])
    end
 
    def id=(some_id) 
@@ -79,7 +80,7 @@ class Student
    end
 
    def mail=(new_mail)
-      if new_mail == nil
+      if new_mail == nil or new_mail == ""
          @mail = nil
       elsif Student.valid_mail?(new_mail)
          @mail = new_mail
@@ -89,7 +90,7 @@ class Student
    end
    
    def tg=(new_tg)
-         if new_tg == nil
+         if new_tg == nil or new_tg == ""
             @tg = nil
             return
          end
@@ -101,7 +102,7 @@ class Student
    end
    
    def git=(new_git)
-      if new_git == nil
+      if new_git == nil or new_git == ""
          @git = nil
       elsif Student.valid_git?(new_git)
          @git = new_git
@@ -132,9 +133,9 @@ class Student
    end
 
    def set_contacts(contacts)
-      self.mail(contacts[:mail]) if(contacts[:mail] != nil)
-      self.phone(contacts[:phone]) if(contacts[:phone] != nil)
-      self.tg(contacts[:tg]) if(contacts[:tg] != nil)
+      self.mail = (contacts[:mail]) if(contacts[:mail] != nil)
+      self.phone = (contacts[:phone]) if(contacts[:phone] != nil)
+      self.tg = (contacts[:tg]) if(contacts[:tg] != nil)
    end
 
    def self.valid_id?(check_id)
@@ -166,8 +167,4 @@ class Student
       return true unless (check_git =~ /(https\:\/\/)?((github)|(gitlab))\.(com)\/\w+/).nil?
       false
    end
-
-
-
-
 end
