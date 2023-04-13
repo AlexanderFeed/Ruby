@@ -1,25 +1,27 @@
 #класс студентов
 class Student
-   attr_reader :id, :first_name, :last_name, :sur_name,:phone,:tg, :mail, :git
+   attr_reader :id :first_name, :last_name, :sur_name,:phone,:tg, :mail, :git
 
    #инициилизирующая функция
-   def initialize(hash:nil, string:nil)
+   def initialize(hash)
       if(hash != nil)
          if(hash[:id] == nil or hash[:first_name] == nil or hash[:last_name] == nil or hash[:sur_name] == nil)
             raise "ID и ФИО обязательно!"
          else
             constr_hash(hash)
          end
-      elsif(string != nil)
-         splitted = string.split('|')
-         if splitted.length != 7 
-            raise ArgumentError.new "Wrong string format for constructor."
-         end
-         constr_hash({id:splitted[0], first_name:splitted[1], last_name:splitted[2], sur_name:splitted[3], phone:splitted[4], tg:splitted[5], mail:splitted[6], git:splitted[7]})
-      else
-         raise ArgumentError.new "Нет никаких данных. Введите их."
       end
    end
+
+   def Student.init_str(string)
+      splitted = string.split('|')
+      if splitted.length != 8 
+         raise ArgumentError.new "Wrong string format for constructor."
+      end
+      constr_hash({id:splitted[0], first_name:splitted[1], last_name:splitted[2], sur_name:splitted[3], phone:splitted[4], tg:splitted[5], mail:splitted[6], git:splitted[7]})
+   end
+
+
 
    def constr_hash(hash)
       self.id = hash[:id]
@@ -27,8 +29,7 @@ class Student
       self.last_name = hash[:last_name]
       self.sur_name = hash[:sur_name]
       self.git = hash[:git]
-      self.mail = hash[:mail]
-      #set_contacts([:mail,:phone,:tg])
+      set_contacts({mail:hash[:mail],phone:hash[:phone],tg:hash[:tg]})
    end
 
    def id=(some_id) 
@@ -47,6 +48,7 @@ class Student
             raise ArgumentError.new "Wrong first name."
          end
    end
+
 
    def last_name=(new_name) 
          if Student.valid_name?(new_name)
@@ -114,6 +116,25 @@ class Student
       end
    end
 
+   def get_info()
+      info = "Name: "
+      info += self.sur_name + " " + self.first_name[0] + "." + self.last_name[0] + "\n"
+      if self.phone != nil 
+         info += "Phone: " + self.phone + "\n"
+      elsif
+         self.tg != nil 
+         info += "Tg: " + self.tg + "\n"
+      elsif
+         self.mail != nil 
+         info += "Email: " + self.mail + "\n"
+      end
+      if self.git != nil 
+         info +="Git: " + self.git + "\n"
+      end
+      return info
+   end
+
+
 
    def some_git?()
       return git != nil
@@ -135,10 +156,25 @@ class Student
       return(some_connect?() and some_git?())
    end
 
+
+   def get_full_short()
+      return "#{self.sur_name}" + "#{self.first_name[0]}" + "#{self.last_name[0]}" 
+
+   end
+
    def set_contacts(contacts)
       self.mail = (contacts[:mail]) if(contacts[:mail] != nil)
       self.phone = (contacts[:phone]) if(contacts[:phone] != nil)
       self.tg = (contacts[:tg]) if(contacts[:tg] != nil)
+   end
+
+   def get_contact()
+      if(self.mail != nil)
+         return "#{self.mail}"
+      elsif (self.phone !=nil)
+         return "#{self.phone}"
+      else
+         return "#{self.tg}"
    end
 
    def self.valid_id?(check_id)
