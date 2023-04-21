@@ -1,33 +1,25 @@
 require_relative "student.rb"
-class StudentShort < Student
-	attr_reader :id :full_name,:git,:contact
+class StudentShort 
+	attr_reader :full_name, :contact
 
    #инициилизирующая функция
    def initialize(hash)
-      	self.id = hash[:id]
       	self.full_name = hash[:full_name]
-      	self.git = hash[:git]
       	self.contact =hash[:contact]
+      	super({git:hash[:git]})
    end
 
    def StudentShort.init_obj(object)
-		self.id = object.id
-		self.full_name = object.get_full_short()
-		self.git = object.git
 		contact = object.get_contact()
-		if contact != nil
-			self.contact=contact
+		if contact == nil
+			raise ArgumentError.new
 		end
+		new({full_name:object.get_full_short(), contact:contact, git:object.git})
 	end
 
-	def id=(some_id) 
-    	@id = some_id
-   end
+	private
    def full_name=(some_name) 
     	@full_name = some_name
-   end
-   def git=(some_git) 
-    	@git = some_git
    end
    def contact=(some_contact) 
     	@contact = some_contact

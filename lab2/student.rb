@@ -1,11 +1,12 @@
 #класс студентов
-class Student
-   attr_reader :id :first_name, :last_name, :sur_name,:phone,:tg, :mail, :git
+require_relative "BaseStudent.rb"
+class Student < BaseStudent
+   attr_reader :first_name, :last_name, :sur_name
 
    #инициилизирующая функция
    def initialize(hash)
       if(hash != nil)
-         if(hash[:id] == nil or hash[:first_name] == nil or hash[:last_name] == nil or hash[:sur_name] == nil)
+         if(hash[:first_name] == nil or hash[:last_name] == nil or hash[:sur_name] == nil)
             raise "ID и ФИО обязательно!"
          else
             constr_hash(hash)
@@ -18,26 +19,17 @@ class Student
       if splitted.length != 8 
          raise ArgumentError.new "Wrong string format for constructor."
       end
-      constr_hash({id:splitted[0], first_name:splitted[1], last_name:splitted[2], sur_name:splitted[3], phone:splitted[4], tg:splitted[5], mail:splitted[6], git:splitted[7]})
+      new({id:splitted[0], first_name:splitted[1], last_name:splitted[2], sur_name:splitted[3], phone:splitted[4], tg:splitted[5], mail:splitted[6], git:splitted[7]})
    end
 
 
 
    def constr_hash(hash)
-      self.id = hash[:id]
       self.first_name = hash[:first_name]
       self.last_name = hash[:last_name]
       self.sur_name = hash[:sur_name]
-      self.git = hash[:git]
-      set_contacts({mail:hash[:mail],phone:hash[:phone],tg:hash[:tg]})
-   end
+      super({id:hash[:id], phone:hash[:phone],tg:hash[:tg],mail:hash[:mail], git:hash[:git]})
 
-   def id=(some_id) 
-         if Student.valid_id?(some_id)
-            @id = some_id
-         else
-            raise ArgumentError.new "Введите значение типа int."
-         end
    end
 
 
@@ -66,55 +58,11 @@ class Student
          end
    end
 
-   def phone=(new_number)
-      if new_number.class == String
-         if new_number == ""
-            @phone = ""
-            return
-         end
-         if Student.valid_telephone?(new_number)
-            @phone = new_number
-         else
-            raise ArgumentError.new "Incorect."
-         end
-      elsif new_number.class == Integer
-         set_phone(new_number.to_s)
-      else
-         raise ArgumentError.new "STR or INT."
-      end
+   def self.valid_name?(check_name)
+      return true unless (check_name =~ /^[a-zA-Z]+$/).nil?
+      false
    end
 
-   def mail=(new_mail)
-      if new_mail == nil or new_mail == ""
-         @mail = nil
-      elsif Student.valid_mail?(new_mail)
-         @mail = new_mail
-      else
-         raise ArgumentError.new "Incorect mail."
-      end
-   end
-   
-   def tg=(new_tg)
-         if new_tg == nil or new_tg == ""
-            @tg = nil
-            return
-         end
-         if Student.valid_tg?(new_tg)
-            @tg = new_tg
-         else
-            raise ArgumentError.new "Wrong telegram."
-         end
-   end
-   
-   def git=(new_git)
-      if new_git == nil or new_git == ""
-         @git = nil
-      elsif Student.valid_git?(new_git)
-         @git = new_git
-      else
-         raise ArgumentError.new "Wrong git."
-      end
-   end
 
    def get_info()
       info = "Name: "
@@ -135,75 +83,9 @@ class Student
    end
 
 
-
-   def some_git?()
-      return git != nil
-   end
-   def some_phone?()
-      return phone != nil
-   end
-   def some_tg?()
-      return tg != nil
-   end
-   def some_mail?()
-      return mail != nil
-   end
-   def some_connect?()
-      return(some_mail?() and some_phone?() and some_mail?())
-   end
-
-   def validate?()
-      return(some_connect?() and some_git?())
-   end
-
-
    def get_full_short()
       return "#{self.sur_name}" + "#{self.first_name[0]}" + "#{self.last_name[0]}" 
 
    end
 
-   def set_contacts(contacts)
-      self.mail = (contacts[:mail]) if(contacts[:mail] != nil)
-      self.phone = (contacts[:phone]) if(contacts[:phone] != nil)
-      self.tg = (contacts[:tg]) if(contacts[:tg] != nil)
-   end
-
-   def get_contact()
-      if(self.mail != nil)
-         return "#{self.mail}"
-      elsif (self.phone !=nil)
-         return "#{self.phone}"
-      else
-         return "#{self.tg}"
-   end
-
-   def self.valid_id?(check_id)
-      return true unless (check_id =~ /\d*/).nil?
-      false
-   end
-
-   def self.valid_telephone?(number)
-      return true unless (number =~ /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/).nil?
-      false
-   end
-
-   def self.valid_name?(check_name)
-      return true unless (check_name =~ /^[a-zA-Z]+$/).nil?
-      false
-   end
-
-   def self.valid_mail?(check_mail)
-      return true unless (check_mail =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i).nil?
-      false
-   end
-
-   def self.valid_tg?(check_mail)
-      return true unless (check_mail =~ /\A@\w*\z/).nil?
-      false
-   end
-
-   def self.valid_git?(check_git)
-      return true unless (check_git =~ /(https\:\/\/)?((github)|(gitlab))\.(com)\/\w+/).nil?
-      false
-   end
 end
