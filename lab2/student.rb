@@ -91,7 +91,7 @@ class Student < BaseStudent
    def self.read_from_txt(path)
       objects = []
       File.open(path, "r") do |file|
-         file.each_line { |x| objects.push(Student.new(string:x[0..-2])) }
+         file.each_line { |x| objects.push(Student.init_str(x[0..-2])) }
       end
       return objects
    end

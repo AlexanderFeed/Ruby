@@ -15,3 +15,7 @@ object3 = Student.new(options)
 p object0.tg()
 p object0.phone()
 p object0.get_info()
+
+students = Student.read_from_txt("in_t.txt")
+
+students.each { |obj| puts obj.get_info }
