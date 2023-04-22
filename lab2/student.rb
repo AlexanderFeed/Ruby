@@ -96,4 +96,10 @@ class Student < BaseStudent
       return objects
    end
 
+   def self.write_to_txt(path, array)
+      File.open(path, "w") do |file|
+         array.each { |obj| file.write(obj.get_info()) }
+      end
+   end
+
 end

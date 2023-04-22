@@ -19,3 +19,5 @@ p object0.get_info()
 students = Student.read_from_txt("in_t.txt")
 
 students.each { |obj| puts obj.get_info }
+
+Student.write_to_txt("out_t.txt", students)
