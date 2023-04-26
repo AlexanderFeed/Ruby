@@ -2,6 +2,7 @@ require_relative 'student'
 require_relative 'StudentShort'
 require_relative 'data_table'
 require_relative 'data_list'
+require_relative 'data_list_student_short'
 options = {id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"}
 #sasha = Student.new(hash:{id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"})
 #stud2 = Student.new({id: '1',first_name:"Kolya", last_name: "Sasha", sur_name: "Kish", phone:"89991231245", git:"https://github.com/AlexanderFeed/"})
@@ -18,7 +19,7 @@ p object0.tg()
 p object0.phone()
 p object0.get_info()
 
-#students = Student.read_from_txt("in_t.txt")
+students = Student.read_from_txt("in_t.txt")
 
 #students.each { |obj| puts obj.get_info }
 
@@ -28,8 +29,13 @@ p object0.get_info()
 #raz = DataTable.new(matric)
 #p raz.get_element(0,2)
 
-arr = [1,2,3,4,5]
-dva = DataList.new(arr)
-dva.select(1)
-dva.select(2)
-p dva.get_selected()
+#arr = [1,2,3,4,5]
+#dva = DataList.new(arr)
+#dva.select(1)
+#dva.select(2)
+#p dva.get_selected()
+
+list = DataListStudentShort.new(students)
+
+tri = list.get_data()
+p tri.get_element(0,3)
