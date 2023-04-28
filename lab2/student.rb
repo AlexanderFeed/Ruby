@@ -96,9 +96,26 @@ class Student < BaseStudent
       return objects
    end
 
+   def get_txt_info
+      info = self.sur_name + "|" + self.first_name[0] + "|" + self.last_name[0] + "|"
+      if self.phone != nil 
+         info += self.phone + "|"
+      elsif
+         self.tg != nil 
+         info += self.tg + "|"
+      elsif
+         self.mail != nil 
+         info += self.mail + "|"
+      end
+      if self.git != nil 
+         info += self.git + "|"
+      end
+      return info
+   end
+
    def self.write_to_txt(path, array)
       File.open(path, "w") do |file|
-         array.each { |obj| file.write(obj.get_info()) }
+         array.each { |obj| file.write(obj.get_txt_info()) }
       end
    end
 
