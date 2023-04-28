@@ -16,7 +16,7 @@ class Student < BaseStudent
 
    def Student.init_str(string)
       splitted = string.split('|')
-      if splitted.length != 8 
+      if splitted.length <4 
          raise ArgumentError.new "Wrong string format for constructor."
       end
       new({id:splitted[0], first_name:splitted[1], last_name:splitted[2], sur_name:splitted[3], phone:splitted[4], tg:splitted[5], mail:splitted[6], git:splitted[7]})
@@ -97,7 +97,7 @@ class Student < BaseStudent
    end
 
    def get_txt_info
-      info = self.sur_name + "|" + self.first_name[0] + "|" + self.last_name[0] + "|"
+      info =self.id +"|"+ self.sur_name + "|" + self.first_name[0] + "|" + self.last_name[0] + "|"
       if self.phone != nil 
          info += self.phone + "|"
       elsif

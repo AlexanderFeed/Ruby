@@ -21,9 +21,9 @@ p object0.get_info()
 
 students = Student.read_from_txt("in_t.txt")
 
-#students.each { |obj| puts obj.get_info }
+students.each { |obj| puts obj.get_info }
 
-#Student.write_to_txt("out_t.txt", students)
+Student.write_to_txt("out_t.txt", students)
 
 #matric = [[9,8,7,6],[5,4,3,2]]
 #raz = DataTable.new(matric)
@@ -35,7 +35,7 @@ students = Student.read_from_txt("in_t.txt")
 #dva.select(2)
 #p dva.get_selected()
 
-list = DataListStudentShort.new(students)
+#list = DataListStudentShort.new(students)
 
-tri = list.get_data()
-p tri.get_element(0,3)
+#tri = list.get_data()
+#p tri.get_element(0,3)
