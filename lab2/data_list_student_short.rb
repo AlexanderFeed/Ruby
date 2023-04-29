@@ -11,7 +11,7 @@ class DataListStudentShort < DataList
 		matrix = []
 		index = 0
 		self.array.each { |item|
-			matrix.push( [index] + item.get_info().split(';')[1..-1] )
+			matrix.push( [index] + item.get_info().split('|')[1..-1] )
 			index += 1
 		}
 		return DataTable.new(matrix)
