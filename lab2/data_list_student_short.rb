@@ -3,17 +3,13 @@ require_relative 'data_table'
 require_relative 'StudentShort'
 class DataListStudentShort < DataList 
 
-	def get_names()
-		return ["Short name", "Git", "Contact"]
+	def get_priva_names()
+		return ["№","Short name", "Git", "Contact"]
 	end
 
-	def get_data()
-		matrix = []
-		index = 0
-		self.array.each { |item|
-			matrix.push( [index] + item.get_info().split('|')[1..-1] )
-			index += 1
-		}
-		return DataTable.new(matrix)
-	end
+	def get_priva_data(obj)
+		items = obj.get_info().split("|")[1..-1]
+		return items[0..-1]
+	end	
+
 end

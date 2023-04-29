@@ -35,7 +35,7 @@ Student.write_to_txt("out_t.txt", students)
 #dva.select(2)
 #p dva.get_selected()
 
-#list = DataListStudentShort.new(students)
-
+list = DataListStudentShort.new(students)
+p list.get_names()
 #tri = list.get_data()
 #p tri.get_element(0,3)

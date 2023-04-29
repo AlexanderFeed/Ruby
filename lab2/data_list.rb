@@ -14,11 +14,31 @@ class DataList
 	end
 
 	def get_names()
-
+		return ["№","Short name", "Git", "Contact"] + get_priva_names()
 	end
 
 	def get_data()
+		matrix = []
+		index = 0
+		self.array.each { |item|
+			matrix.push( [index] + item.get_info().split('|')[1..-1] )
+			index += 1
+		}
+		return DataTable.new(matrix)
 	end
+
+	private
+
+	def get_priva_names()
+		return []
+	end
+
+	def get_priva_data()
+		return []
+	end	
+	
+
+
 
 	private
 	attr_reader :array

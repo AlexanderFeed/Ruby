@@ -96,8 +96,8 @@ class Student < BaseStudent
       return objects
    end
 
-   def get_txt_info
-      info =self.id +"|"+ self.sur_name + "|" + self.first_name[0] + "|" + self.last_name[0] + "|"
+   def get_txt_info()
+      info = self.id + "|" + self.sur_name + "|" + self.first_name + "|" + self.last_name + "|"
       if self.phone != nil 
          info += self.phone + "|"
       elsif
