@@ -5,6 +5,11 @@ class DataList
 		@mark = []
 	end
 
+	def array=(some_array) 
+    	@array = some_array
+   end
+
+
 	def select(number)
 		self.mark.append(self.array[number])
 	end
@@ -14,7 +19,7 @@ class DataList
 	end
 
 	def get_names()
-		return ["№","Short name", "Git", "Contact"] + get_priva_names()
+		return ["№"] + get_priva_names()
 	end
 
 	def get_data()

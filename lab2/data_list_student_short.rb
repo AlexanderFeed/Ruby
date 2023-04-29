@@ -4,7 +4,7 @@ require_relative 'StudentShort'
 class DataListStudentShort < DataList 
 
 	def get_priva_names()
-		return ["№","Short name", "Git", "Contact"]
+		return ["Short name", "Git", "Contact"]
 	end
 
 	def get_priva_data(obj)
