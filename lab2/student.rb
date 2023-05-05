@@ -97,7 +97,7 @@ class Student < BaseStudent
    end
 
    def get_txt_info()
-      info = self.id + "|" + self.sur_name + "|" + self.first_name + "|" + self.last_name + "|"
+      info = self.id + "|" + self.first_name + "|" + self.last_name + "|" + self.sur_name + "|" 
       if self.phone != nil 
          info += self.phone + "|"
       elsif

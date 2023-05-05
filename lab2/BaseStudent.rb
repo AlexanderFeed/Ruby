@@ -1,5 +1,4 @@
 class BaseStudent
-	attr_reader :id, :phone,:tg, :mail, :git
 
    #инициилизирующая функция
    def initialize(hash)
@@ -86,7 +85,6 @@ class BaseStudent
       end
    end
 
-
     def self.valid_id?(check_id)
       return true unless (check_id =~ /\d*/).nil?
       false
@@ -112,18 +110,18 @@ class BaseStudent
       false
    end
 
-    def some_git?()
-      return git != nil
-   end
-   def some_phone?()
-      return phone != nil
-   end
-   def some_tg?()
-      return tg != nil
-   end
-   def some_mail?()
-      return mail != nil
-   end
+   #def some_git?()
+   #   return git != nil
+   #end
+   #def some_phone?()
+   #   return phone != nil
+   #end
+   #def some_tg?()
+   #   return tg != nil
+   #end
+   #def some_mail?()
+   #   return mail != nil
+   #end
    def some_connect?()
       return(some_mail?() and some_phone?() and some_mail?())
    end
@@ -132,5 +130,7 @@ class BaseStudent
       return(some_connect?() and some_git?())
    end
 
+   private
+   attr_reader :id, :phone,:tg, :mail, :git
 
 end

@@ -2,7 +2,9 @@ require_relative 'data_list'
 require_relative 'data_table'
 require_relative 'StudentShort'
 class DataListStudentShort < DataList 
-
+	def initialize()
+		super
+	end
 	def get_priva_names()
 		return ["Short name", "Git", "Contact"]
 	end
