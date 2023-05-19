@@ -82,22 +82,14 @@ class Student < BaseStudent
       return info
    end
 
-
    def get_full_short()
       return "#{self.sur_name}" + "#{self.first_name[0]}" + "#{self.last_name[0]}" 
 
    end
 
-   def self.read_from_txt(path)
-      objects = []
-      File.open(path, "r") do |file|
-         file.each_line { |x| objects.push(Student.init_str(x[0..-2])) }
-      end
-      return objects
-   end
-
    def get_txt_info()
-      info = self.id + "|" + self.first_name + "|" + self.last_name + "|" + self.sur_name + "|" 
+      info = "Stud: "
+      info += self.id + "|" + self.first_name + "|" + self.last_name + "|" + self.sur_name + "|" 
       if self.phone != nil 
          info += self.phone + "|"
       elsif
@@ -111,12 +103,6 @@ class Student < BaseStudent
          info += self.git + "|"
       end
       return info
-   end
-
-   def self.write_to_txt(path, array)
-      File.open(path, "w") do |file|
-         array.each { |obj| file.write(obj.get_txt_info()) }
-      end
    end
 
 end

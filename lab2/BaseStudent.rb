@@ -13,7 +13,7 @@ class BaseStudent
 
    def id=(some_id) 
          if BaseStudent.valid_id?(some_id)
-            @id = some_id
+            @id = some_id.to_i
          else
             raise ArgumentError.new "Введите значение типа int."
          end
@@ -130,7 +130,7 @@ class BaseStudent
       return(some_connect?() and some_git?())
    end
 
-   private
-   attr_reader :id, :phone,:tg, :mail, :git
+   public attr_reader :id, :git
+   private attr_reader  :phone,:tg, :mail
 
 end

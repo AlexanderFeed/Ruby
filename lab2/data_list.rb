@@ -1,3 +1,4 @@
+require_relative "student"
 class DataList 
 
 	def initialize(array)
@@ -26,8 +27,9 @@ class DataList
 		matrix = []
 		index = 0
 		self.array.each { |item|
-			matrix.push( [index] + item.get_info().split('|')[1..-1] )
+			matrix.push( [index] + get_priva_data(item))
 			index += 1
+			p matrix
 		}
 		return DataTable.new(matrix)
 	end
