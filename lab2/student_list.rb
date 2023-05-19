@@ -1,33 +1,36 @@
 require_relative "student.rb"
+require_relative "StudentShort.rb"
 require_relative "data_list_student_short.rb"
 
-class StudentListTxt
-	attr_reader :objects
+class StudentsList
+	attr_reader :objects, :file_operator
 
-	def initialize()
+	def initialize(file_operator)
 		@objects = []
+		self.file_operator = file_operator
 	end
 
 	def read_file(path)
-		File.open(path, "r") do |file|
-			file.each_line { |x| self.objects.push(Student.init_str(x[0..-2])) }
-		end
+		@objects = self.file_operator.read_file(path)
+
+	end
+
+	def file_operator=(object)
+		@file_operator = object
 	end
 
 	def write_file(path)
-		File.open(path, "w") do |file|
-			self.objects.each { |obj| file.write(obj.get_info_full+"\n") }
-		end
+		self.file_operator.write_file(path, self.objects)
 	end
 
-	def poluchit_obj(id)
+	def [](id)
 		self.objects.each { |obj|
 			if obj.id == id then return obj end
 		}
 		return nil
 	end
 
-	def vstav_obj=(id, object)
+	def []=(id, object)
 		index = 0
 		self.objects.each { |obj|
 			if obj.id == id then self.objects[index] = object end
@@ -51,7 +54,7 @@ class StudentListTxt
 	end
 
 	def sort()
-		self.objects.sort_by!(&:get_full_short)
+		self.objects.sort_by!(&:get_family_and_initials)
 	end
 
 	def add_student(object)
@@ -73,5 +76,4 @@ class StudentListTxt
 	def get_student_short_count()
 		return self.objects.length
 	end
-
 end

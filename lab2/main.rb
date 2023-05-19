@@ -3,7 +3,8 @@ require_relative 'StudentShort'
 require_relative 'data_table'
 require_relative 'data_list'
 require_relative 'data_list_student_short'
-require_relative "student_list_txt"
+require_relative "student_list.rb"
+require_relative "file_operator_txt.rb"
 options = {id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"}
 #sasha = Student.new(hash:{id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"})
 #stud2 = Student.new({id: '1',first_name:"Kolya", last_name: "Sasha", sur_name: "Kish", phone:"89991231245", git:"https://github.com/AlexanderFeed/"})
@@ -33,11 +34,11 @@ object3 = Student.new(options)
 #dva.select(1)
 #dva.select(2)
 #p dva.get_selected()
-students = [object0,object3,object0,object3]
-list = DataListStudentShort.new(students)
-p list.get_names()
-tri = list.get_data()
-p tri.get_element(1,0)
+#students = [object0,object3,object0,object3]
+#list = DataListStudentShort.new(students)
+#p list.get_names()
+#tri = list.get_data()
+#p tri.get_element(1,0)
 #p BaseStudent.valid_id?("123")
 #studentslist = StudentListTxt.new()
 #studentslist.read_file("in_t.txt")
@@ -46,3 +47,6 @@ p tri.get_element(1,0)
 #dlss = studentslist.get_k_n_student_short_list(0,5)
 #dt = dlss.get_data()
 #puts dt.get_element(1,1)
+
+studentslist = StudentsList.new(FileOperatorTxt.new())
+p studentslist
