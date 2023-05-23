@@ -76,4 +76,14 @@ class StudentsList
 	def get_student_short_count()
 		return self.objects.length
 	end
+
+	private
+
+	def []=(id, object)
+		index = 0
+		self.objects.each { |obj|
+			if obj.id == id then self.objects[index] = object end
+			index += 1
+		}
+	end
 end

@@ -3,8 +3,10 @@ require_relative 'StudentShort'
 require_relative 'data_table'
 require_relative 'data_list'
 require_relative 'data_list_student_short'
-require_relative "student_list.rb"
-require_relative "file_operator_txt.rb"
+require_relative "student_list"
+require_relative "file_operator_txt"
+require_relative "file_operator_json"
+require_relative "file_operator_yaml"
 options = {id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"}
 #sasha = Student.new(hash:{id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"})
 #stud2 = Student.new({id: '1',first_name:"Kolya", last_name: "Sasha", sur_name: "Kish", phone:"89991231245", git:"https://github.com/AlexanderFeed/"})

@@ -122,6 +122,13 @@ class BaseStudent
    #def some_mail?()
    #   return mail != nil
    #end
+   def to_hash()
+      hash = {}
+      instance_variables.each { |var|
+         hash[var.to_s.delete("@")] = instance_variable_get(var)
+      }
+      return hash
+   end
    def some_connect?()
       return(some_mail?() and some_phone?() and some_mail?())
    end

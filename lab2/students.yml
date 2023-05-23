@@ -1,0 +1,27 @@
+--- !ruby/object:Student
+name: Arb
+family: Al
+patronymic: Ache
+id: 0
+email: address@mail.sd
+phone_number: "+79189356731"
+telegram: "@ahto_ahaha"
+git: https://github.com/CyBeR_uSeR
+--- !ruby/object:Student
+name: Ti
+family: Prikki
+patronymic: Noitaich
+id: 1
+email: my_bestEmail3@cybermail.gog
+phone_number:
+telegram:
+git: gitlab.com/stellAr
+--- !ruby/object:Student
+name: Lar
+family: Var
+patronymic: Sto
+id: 2
+email:
+phone_number: '79336421496'
+telegram: "@BloodBath"
+git: github.com/JJJ_rar
