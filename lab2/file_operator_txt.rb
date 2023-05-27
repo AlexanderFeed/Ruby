@@ -1,4 +1,4 @@
-require_relative "file_operator.rb"
+require_relative "file_operator"
 
 class FileOperatorTxt < FileOperator
 

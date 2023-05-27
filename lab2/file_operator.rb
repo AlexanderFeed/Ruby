@@ -1,7 +1,7 @@
-require_relative "student.rb"
+require_relative "student"
 
 class FileOperator
-
+	public
 	def read_file(path)
 
 	end

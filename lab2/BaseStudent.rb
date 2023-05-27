@@ -1,8 +1,15 @@
 class BaseStudent
 
+   public attr_reader :id, :phone, :mail, :tg, :git
    #инициилизирующая функция
+   private
    def initialize(hash)
             constr_hash(hash)
+   end
+
+   public
+   def self.new_hash(hash)
+      return new(hash)
    end
 
    def constr_hash(hash)
@@ -11,12 +18,17 @@ class BaseStudent
       set_contacts({mail:hash[:mail],phone:hash[:phone],tg:hash[:tg]})
    end
 
-   def id=(some_id) 
-         if BaseStudent.valid_id?(some_id)
-            @id = some_id.to_i
-         else
-            raise ArgumentError.new "Введите значение типа int."
+   def id=(new_id)
+      if new_id.class == Integer
+         @id = new_id
+      elsif new_id.class == String
+         if new_id.match(/\D/)
+            raise ArgumentError.new "Id must be Integer"
          end
+         self.id = new_id.to_i
+      else
+         raise ArgumentError.new "Id must be Integer"
+      end
    end
 
    def phone=(new_number)
@@ -76,9 +88,9 @@ class BaseStudent
    end
 
    def get_contact()
-      if(self.mail != nil)
+      if(self.mail != nil) then
          return "#{self.mail}"
-      elsif (self.phone !=nil)
+      elsif (self.phone !=nil) then
          return "#{self.phone}"
       else
          return "#{self.tg}"
@@ -137,7 +149,5 @@ class BaseStudent
       return(some_connect?() and some_git?())
    end
 
-   public attr_reader :id, :git
-   private attr_reader  :phone,:tg, :mail
 
 end

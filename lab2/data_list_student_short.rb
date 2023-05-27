@@ -14,4 +14,8 @@ class DataListStudentShort < DataList
 		return items[0..-1]
 	end	
 
+	def item_class()
+		return StudentShort
+	end
+
 end

@@ -7,6 +7,8 @@ require_relative "student_list"
 require_relative "file_operator_txt"
 require_relative "file_operator_json"
 require_relative "file_operator_yaml"
+require_relative "student_list_db"
+require "sqlite3"
 options = {id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"}
 #sasha = Student.new(hash:{id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"})
 #stud2 = Student.new({id: '1',first_name:"Kolya", last_name: "Sasha", sur_name: "Kish", phone:"89991231245", git:"https://github.com/AlexanderFeed/"})
@@ -17,7 +19,7 @@ options = {id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",ph
 #p sasha.validate()
 #object1 = Student.new()
 #option2 = "123|kek|nekek|netda|8-988-6832818|hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/"
-object0 = Student.init_str("123|kek|nekek|netda|89886832818|@hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/")
+object0 = Student.new_string("123|kek|nekek|netda|89886832818|@hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/")
 object3 = Student.new(options)
 #p object0.tg()
 #p object0.phone()
@@ -50,5 +52,37 @@ object3 = Student.new(options)
 #dt = dlss.get_data()
 #puts dt.get_element(1,1)
 
-studentslist = StudentsList.new(FileOperatorTxt.new())
-p studentslist
+
+studentslist = StudentList.new(FileOperatorTxt.new())
+#studentslist.read_file("students.txt")
+#studentslist.file_operator = FileOperatorYAML.new()
+studentslist.file_operator = FileOperatorJSON.new()
+#studentslist.write_file("students.yml")
+#studentslist.write_file("students.json")
+#studentslist.read_file("students.yml")
+studentslist.read_file("students.json")
+studentslist.file_operator = FileOperatorTxt.new()
+studentslist.write_file("students.txt")
+#puts studentslist.get_k_n_student_short_list(1,0)
+#studentslist.sort()
+#p studentslist
+#studentslist.add_student(object0)
+#p studentslist
+
+
+
+#StudentsListDB.connect("student.db")
+
+#puts StudentsListDB.instance[3].get_info()
+
+
+
+
+#db = SQLite3::Database.open 'student.db'
+#db.results_as_hash = true
+#db.execute File.read("structure.sql")
+#db.execute File.read("data.sql")
+
+
+#result = db.query "SELECT * FROM Student"
+#result.each { |row| puts row }

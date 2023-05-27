@@ -4,7 +4,7 @@ require "json"
 class FileOperatorJSON < FileOperator
 	### PUBLIC OBJECT METHODS
 	public
-
+	
 	def read_file(path)
 		objects = []
 		File.open(path, "r") do |file|
@@ -12,11 +12,11 @@ class FileOperatorJSON < FileOperator
 		end
 		return objects
 	end
-
+	
 	def write_file(path, objects)
 		File.open(path, "w") do |file|
 			objects.each { |obj| file.write(JSON.generate(obj.to_hash)+"\n") }
 		end
 	end
-
+	
 end

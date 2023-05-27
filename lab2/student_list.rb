@@ -1,9 +1,10 @@
-require_relative "student.rb"
-require_relative "StudentShort.rb"
-require_relative "data_list_student_short.rb"
+require_relative "student"
+require_relative "StudentShort"
+require_relative "data_list_student_short"
 
-class StudentsList
-	attr_reader :objects, :file_operator
+class StudentList
+	private attr_reader :objects
+	public attr_reader :file_operator
 
 	def initialize(file_operator)
 		@objects = []
@@ -23,7 +24,7 @@ class StudentsList
 		self.file_operator.write_file(path, self.objects)
 	end
 
-	def [](id)
+	def []=(id)
 		self.objects.each { |obj|
 			if obj.id == id then return obj end
 		}
@@ -58,7 +59,9 @@ class StudentsList
 	end
 
 	def add_student(object)
-		object.id = self.objects.max_by(&:id).id+1
+		#temp = self.objects.max_by(&:id)
+		#p temp
+		#object.id = temp.id
 		self.objects.push(object)
 	end
 
