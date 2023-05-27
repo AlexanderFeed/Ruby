@@ -3,13 +3,14 @@ require_relative 'StudentShort'
 require_relative 'data_table'
 require_relative 'data_list'
 require_relative 'data_list_student_short'
-require_relative "student_list"
+require_relative "student_list_file"
 require_relative "file_operator_txt"
 require_relative "file_operator_json"
 require_relative "file_operator_yaml"
 require_relative "student_list_db"
+require_relative "db_operator"
 require "sqlite3"
-options = {id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"}
+object1 = Student.new_hash({id:0, first_name:"Arbux", sur_name:"Alebarod", last_name:"Achekavich", phone:"+79189356731", mail:"address@mail.sd", tg:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #sasha = Student.new(hash:{id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"})
 #stud2 = Student.new({id: '1',first_name:"Kolya", last_name: "Sasha", sur_name: "Kish", phone:"89991231245", git:"https://github.com/AlexanderFeed/"})
 #p sasha.first_name
@@ -20,7 +21,6 @@ options = {id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",ph
 #object1 = Student.new()
 #option2 = "123|kek|nekek|netda|8-988-6832818|hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/"
 object0 = Student.new_string("123|kek|nekek|netda|89886832818|@hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/")
-object3 = Student.new(options)
 #p object0.tg()
 #p object0.phone()
 #p object0.get_info()
@@ -53,16 +53,16 @@ object3 = Student.new(options)
 #puts dt.get_element(1,1)
 
 
-studentslist = StudentList.new(FileOperatorTxt.new())
+#studentslist = StudentList.new(FileOperatorTxt.new())
 #studentslist.read_file("students.txt")
 #studentslist.file_operator = FileOperatorYAML.new()
-studentslist.file_operator = FileOperatorJSON.new()
+#studentslist.file_operator = FileOperatorJSON.new()
 #studentslist.write_file("students.yml")
 #studentslist.write_file("students.json")
 #studentslist.read_file("students.yml")
-studentslist.read_file("students.json")
-studentslist.file_operator = FileOperatorTxt.new()
-studentslist.write_file("students.txt")
+#studentslist.read_file("students.json")
+#studentslist.file_operator = FileOperatorTxt.new()
+#studentslist.write_file("students.txt")
 #puts studentslist.get_k_n_student_short_list(1,0)
 #studentslist.sort()
 #p studentslist
@@ -86,3 +86,16 @@ studentslist.write_file("students.txt")
 
 #result = db.query "SELECT * FROM Student"
 #result.each { |row| puts row }
+
+
+
+#StudentsListDB.connect("student.db")
+#puts sldb[3].get_info()
+
+
+DBOperator.connect("student.db")
+sldb = StudentsListDB.new()
+p sldb
+sldb.add_student(object1)
+p sldb
+p sldb.get_count()

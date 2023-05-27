@@ -13,6 +13,7 @@ class StudentShort < BaseStudent
 
    def StudentShort.new_object(object)
 		contact = object.get_contact()
+		if contact == nil then contact = {type:nil, contact:nil} end
 		if contact == nil
 			raise ArgumentError.new
 		end
@@ -25,7 +26,6 @@ class StudentShort < BaseStudent
 		return new({id:new_id, short_name:splitted[0], git:splitted[1], contact_type:contact_splitted[0], contact:contact_splitted[1]})
 	end
 	
-	### OBJECT PUBLIC METHODS
 	public
 	
 	def get_info
@@ -33,7 +33,9 @@ class StudentShort < BaseStudent
 		info += "|#{self.short_name}|"
 		info += "#{self.git}|"
 		contact = get_one_contact()
-		info += "#{contact[:type]}:#{contact[:contact]}"
+		if contact != nil
+			info += "#{contact[:type]}:#{contact[:contact]}"
+		end
 		return info
 	end
 	
@@ -48,12 +50,12 @@ class StudentShort < BaseStudent
 	
 	def set_contact_by_name(name, contact)
 		case name
-			when "phone_number"
-				set_contacts(phone_number:contact)
-			when "telegram"
-				set_contacts(telegram:contact)
-			when "email"
-				set_contacts(email:contact)
+			when "phone"
+				set_contacts(phone:contact, tg:"", mail:"")
+			when "tg"
+				set_contacts(tg:contact, phone:"", mail:"")
+			when "mail"
+				set_contacts(mail:contact, tg:"", phone:"")
 		end
 	end
 end

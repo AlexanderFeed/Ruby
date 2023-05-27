@@ -2,13 +2,12 @@ require_relative "student"
 require_relative "StudentShort"
 require_relative "data_list_student_short"
 
-class StudentList
+class StudentListFile
 	private attr_reader :objects
 	public attr_reader :file_operator
 
-	def initialize(file_operator)
+	def initialize()
 		@objects = []
-		self.file_operator = file_operator
 	end
 
 	def read_file(path)
