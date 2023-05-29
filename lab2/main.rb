@@ -9,8 +9,18 @@ require_relative "file_operator_json"
 require_relative "file_operator_yaml"
 require_relative "student_list_db"
 require_relative "db_operator"
+require_relative "student_list"
+require_relative "student_list_db_adapter_to_file"
+require_relative "window_main"
 require "sqlite3"
-object1 = Student.new_hash({id:0, first_name:"Arbux", sur_name:"Alebarod", last_name:"Achekavich", phone:"+79189356731", mail:"address@mail.sd", tg:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
+
+app = FXApp.new()
+WindowMain.new(app)
+app.create()
+app.run()
+
+
+#object1 = Student.new_hash({id:0, first_name:"Arbux", sur_name:"Alebarod", last_name:"Achekavich", phone:"+79189356731", mail:"address@mail.sd", tg:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #sasha = Student.new(hash:{id: '1',first_name:"Sasha", last_name: "Kolya", sur_name: "Mishch",phone:"89186832818",tg:"@tgtg", mail:"kek@mail.ru", git:"https://github.com/AlexanderFeed/"})
 #stud2 = Student.new({id: '1',first_name:"Kolya", last_name: "Sasha", sur_name: "Kish", phone:"89991231245", git:"https://github.com/AlexanderFeed/"})
 #p sasha.first_name
@@ -20,7 +30,7 @@ object1 = Student.new_hash({id:0, first_name:"Arbux", sur_name:"Alebarod", last_
 #p sasha.validate()
 #object1 = Student.new()
 #option2 = "123|kek|nekek|netda|8-988-6832818|hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/"
-object0 = Student.new_string("123|kek|nekek|netda|89886832818|@hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/")
+#object0 = Student.new_string("123|kek|nekek|netda|89886832818|@hochukushatt|kek@mail.ru|https://github.com/AlexanderFeed/")
 #p object0.tg()
 #p object0.phone()
 #p object0.get_info()
@@ -93,9 +103,26 @@ object0 = Student.new_string("123|kek|nekek|netda|89886832818|@hochukushatt|kek@
 #puts sldb[3].get_info()
 
 
-DBOperator.connect("student.db")
-sldb = StudentsListDB.new()
-p sldb
-sldb.add_student(object1)
-p sldb
-p sldb.get_count()
+
+#object1 = Student.new_hash({id:0, first_name:"Arbux", sur_name:"Alebarod", last_name:"Achekavich", phone:"+79189356731", mail:"address@mail.sd", tg:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
+
+
+#list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorTxt.new(), "test.txt"))
+#list.remove_student(3)
+#list.add_student(object)
+
+#object = Student.new_string(list[4].get_info_full())
+#list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorYAML.new(), "test.yaml"))
+#list.remove_student(1)
+#list.replace_student(2,object)
+
+
+
+
+#DBOPER
+
+#object2 = Student.new_hash({id:1, first_name:"Ti", sur_name: "Prikki", last_name:"Noitaich", mail:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
+#DBOperator.connect("student.db")
+#list = StudentsList.new(StudentListDB.new())
+#list.add_student(object1)
+#list.replace_student(18, object2)

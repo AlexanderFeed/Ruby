@@ -1,4 +1,4 @@
-require_relative "student"
+
 class DBOperator
 
 	private attr_reader :connection
@@ -13,37 +13,51 @@ class DBOperator
 
     public
 
-    def get_student(id)
-        return Student.new_hash(self.connection.query("SELECT * FROM Student WHERE ID=#{id}").next.transform_keys(&:to_sym))
+    def get_element(table, id)
+        return self.connection.query("SELECT * FROM #{table} WHERE ID=#{id}").next.transform_keys(&:to_sym)
     end
 
-    def get_k_n_students(k, n)
-		result = self.connection.query("SELECT * FROM Student LIMIT #{k*n},#{n}")
+    def get_k_n_elements(table, k, n)
+		result = self.connection.query("SELECT * FROM #{table} LIMIT #{k*n},#{n}")
 		output = []
 		result.each { |row|
 			#puts row
-			output.push(Student.new_hash(row.transform_keys(&:to_sym)))
+			output.push(row.transform_keys(&:to_sym))
 		}
 		return output
 	end
 
-    def add_student(object)
-        self.connection.execute("INSERT INTO Student (first_name, sur_name, last_name, git, phone, tg, mail)
-		VALUES ('#{object.first_name}', '#{object.sur_name}', '#{object.last_name}', '#{object.git}', '#{object.phone}', '#{object.tg}', '#{object.mail}')")
+    def add_element(table, hash)
+		fields = "#{hash.keys[0]}"
+		(1..hash.keys.length-1).each { |index|
+			fields += ", #{hash.keys[index]}"
+		}
+
+		values = "'#{hash.values[0]}'"
+		(1..hash.values.length-1).each { |index|
+			values += ", '#{hash.values[index]}'"
+		}
+
+        self.connection.execute("INSERT INTO #{table} (#{fields})
+		VALUES (#{values})")
 	end
 
-    def remove_student(id)
-		self.connection.execute("DELETE FROM Student WHERE id=#{id}")
+    def remove_element(table, id)
+		self.connection.execute("DELETE FROM #{table} WHERE id=#{id}")
 	end
 
-    def replace_student(id, object)
-		self.connection.execute("UPDATE Student SET first_name='#{object.first_name}', sur_name='#{object.sur_name}', last_name='#{object.last_name}',
-			git='#{object.git}', phone='#{object.phone}', tg='#{object.tg}', mail='#{object.mail}'
-			WHERE id=#{id}")
+    def replace_element(table, id, hash)
+		fields = "#{hash.keys[0]}='#{hash.values[0]}'"
+		(1..hash.keys.length-1).each { |index|
+			fields += ", #{hash.keys[index]}='#{hash.values[index]}'"
+		}
+
+		self.connection.execute("UPDATE #{table} SET #{fields}
+		WHERE id=#{id}")
 	end
 
-    def get_count()
-		return self.connection.query("SELECT COUNT(*) FROM Student").next["COUNT(*)"]
+    def get_count(table)
+		return self.connection.query("SELECT COUNT(*) FROM #{table}").next["COUNT(*)"]
 	end
 
     def connect(database)
