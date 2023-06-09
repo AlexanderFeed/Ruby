@@ -1,13 +1,37 @@
 require_relative "student_list_db.rb"
+require_relative "student_list_db_adapter_to_file"
+require_relative "file_operator"
 
 class StudentsList
     ### GENERATED
-    public attr_accessor :list
+    public attr_reader :list
 	### INITIALIZE
 	private
 
 	def initialize(list)
-		self.list = list
+		@list = list
+	end
+
+
+	### CONSTRUCTOR METHODS
+	private_class_method :new
+	public
+
+	def self.new_db()
+		new(StudentListDB.new())
+	end
+
+	def self.new_file(path)
+		type = (path[/\.[a-zA-Z0-9]*$/][1..-1]).downcase()
+		case type
+			when "txt"
+				operator = FileOperatorTXT.new()
+			when "yaml"
+				operator = FileOperatorYAML.new()
+			when "json"
+				operator = FileOperatorJSON.new()
+		end
+		new(StudentsListDBAdapterToFile.new(operator, path))
 	end
 
 	### PUBLIC OBJECT METHODS

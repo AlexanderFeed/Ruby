@@ -34,7 +34,9 @@ class StudentListDB
 
 	def add_student(object)
 		hash = object.to_hash()
+		p hash
 		hash.delete(:id.to_s)
+		p hash
 		DBOperator.instance.add_element("Student", hash)	
 	end
 
@@ -49,6 +51,7 @@ class StudentListDB
 	end
 
 	def get_count()
+		
 		return DBOperator.instance.get_count("Student")
 	end
 end

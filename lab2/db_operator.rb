@@ -68,11 +68,10 @@ class DBOperator
 
 	public
 
+
+	@instance = new
 	def self.instance
-		if @instance == nil
-			@instance = new()
-		end
-		return @instance
+		@instance
 	end
 
 	def self.connect(database)

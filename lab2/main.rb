@@ -12,10 +12,11 @@ require_relative "db_operator"
 require_relative "student_list"
 require_relative "student_list_db_adapter_to_file"
 require_relative "window_main"
+require_relative "student_list_controller"
 require "sqlite3"
 
 app = FXApp.new()
-WindowMain.new(app)
+FXBWindowMain.new(app)
 app.create()
 app.run()
 
@@ -88,10 +89,17 @@ app.run()
 
 
 
+
+
 #db = SQLite3::Database.open 'student.db'
 #db.results_as_hash = true
 #db.execute File.read("structure.sql")
 #db.execute File.read("data.sql")
+#db.execute File.read("database/scripts/structure.sql")
+#db.execute File.read("database/scripts/data.sql")
+
+#result = db.query "SELECT * FROM Student"
+#result.each { |row| puts row }
 
 
 #result = db.query "SELECT * FROM Student"
@@ -99,7 +107,7 @@ app.run()
 
 
 
-#StudentsListDB.connect("student.db")
+#StudentListDB.connect("student.db")
 #puts sldb[3].get_info()
 
 
@@ -108,8 +116,7 @@ app.run()
 
 
 #list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorTxt.new(), "test.txt"))
-#list.remove_student(3)
-#list.add_student(object)
+#list.add_student(object1)
 
 #object = Student.new_string(list[4].get_info_full())
 #list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorYAML.new(), "test.yaml"))
@@ -124,5 +131,5 @@ app.run()
 #object2 = Student.new_hash({id:1, first_name:"Ti", sur_name: "Prikki", last_name:"Noitaich", mail:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
 #DBOperator.connect("student.db")
 #list = StudentsList.new(StudentListDB.new())
-#list.add_student(object1)
+#list.add_student(object2)
 #list.replace_student(18, object2)
