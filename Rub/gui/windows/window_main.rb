@@ -23,7 +23,7 @@ class FXBWindowMain < FXMainWindow
 
         tab1_item = FXTabItem.new(tabber, "Вкладка 1")
         tab1_frame = FXHorizontalFrame.new(tabber, opts:LAYOUT_FILL)
-        self.students_list_view = FXBStudentListView.new(tab1_frame)
+        self.students_list_view = FXBStudentListView.new(tab1_frame, self)
 
         tab2_item = FXTabItem.new(tabber, "Вкладка 2")
         tab2_frame = FXHorizontalFrame.new(tabber)
@@ -75,6 +75,10 @@ class FXBWindowMain < FXMainWindow
         self.students_list_view.buttons_region.btn_create.connect(SEL_COMMAND) { |sender|
             self.btn_create_on_click()
         }
+
+        self.students_list_view.buttons_region.btn_delete.connect(SEL_COMMAND) { |sender|
+            self.btn_delete_on_click()
+        }
     end
 
     def filter_defaults()
@@ -91,5 +95,9 @@ class FXBWindowMain < FXMainWindow
 
     def btn_create_on_click()
         self.controller.create_student_window()
+    end
+
+    def btn_delete_on_click()
+        self.controller.delete_selected_students()
     end
 end

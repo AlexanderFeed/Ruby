@@ -6,10 +6,13 @@ class FXBButtonsRegion
     private attr_writer :btn_create, :btn_change, :btn_delete, :btn_update
     public attr_reader :btn_create, :btn_change, :btn_delete, :btn_update
 
+    public attr_accessor :parent
+
     ### INITIALIZE
     private
 
-    def initialize(column)
+    def initialize(column, par)
+        self.parent = par
         self.btn_create = FXButton.new(column, "Добавить", opts:LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
         self.btn_change = FXButton.new(column, "Изменить", opts:LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
         self.btn_delete = FXButton.new(column, "Удалить", opts:LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
@@ -34,6 +37,8 @@ class FXBButtonsRegion
                 self.btn_change.enable()
                 self.btn_delete.enable()
             end
+
+            self.parent.parent.controller.update_selection(table.selStartRow, table.selEndRow)
         }
     end
 end

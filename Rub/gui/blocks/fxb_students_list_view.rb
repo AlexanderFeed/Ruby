@@ -10,10 +10,13 @@ class FXBStudentListView
     private attr_writer :filter_region, :table_region, :buttons_region
     public attr_reader :filter_region, :table_region, :buttons_region
 
+    public attr_accessor :parent
+
     ### INITIALIZE
     private
     
-    def initialize(frame)
+    def initialize(frame, par)
+        self.parent = par
         column_filter = FXVerticalFrame.new(frame, opts:LAYOUT_FIX_WIDTH, width:200)
 
         self.filter_region = FXBFilterRegion.new(column_filter)
@@ -22,7 +25,7 @@ class FXBStudentListView
         self.table_region = FXBTableRegion.new(column_table)
 
         column_buttons = FXVerticalFrame.new(frame, opts:LAYOUT_FIX_WIDTH, width:150)
-        self.buttons_region = FXBButtonsRegion.new(column_buttons)
+        self.buttons_region = FXBButtonsRegion.new(column_buttons, self)
         self.buttons_region.table_selection_reaction(self.table_region.table)
     end
 end

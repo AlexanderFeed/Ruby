@@ -25,8 +25,8 @@ class AddStudentController
         correct = correct && Student.is_name(self.window.name_field.text)
         correct = correct && Student.is_name(self.window.patronymic_field.text)
         correct = correct && Student.is_phone_number(self.window.phone_field.text)
-        #correct = correct && Student.is_telegram(self.window.telegram_field.text)
-        #correct = correct && Student.is_email(self.window.email_field.text)
+        correct = correct && Student.is_telegram(self.window.telegram_field.text)
+        correct = correct && Student.is_email(self.window.email_field.text)
         correct = correct && Student.is_git(self.window.git_field.text)
 
         if (correct)
@@ -39,6 +39,7 @@ class AddStudentController
     def create_student()
         temp = Student.new_hash({name:self.window.name_field.text, family:self.window.family_field.text, patronymic:self.window.patronymic_field.text, phone_number:self.window.phone_field.text, telegram:self.window.telegram_field.text, email:self.window.email_field.text, git:self.window.git_field.text })
         window.parent.controller.list.add_student(temp)
+        window.parent.controller.refresh_data()
         window.hide()
     end
 

@@ -21,9 +21,9 @@ class StudentsListController
 
     def refresh_data()
         if self.list_short == nil
-            self.list_short = list.get_k_n_student_short_list(window.page, window.elements_by_page)
+            self.list_short = self.list.get_k_n_student_short_list(window.page, window.elements_by_page)
         else
-            list.get_k_n_student_short_list(window.page, window.elements_by_page, self.list_short)
+            self.list.get_k_n_student_short_list(window.page, window.elements_by_page, self.list_short)
         end
 
         self.list_short.notify(window.students_list_view.table_region.table)
@@ -34,5 +34,23 @@ class StudentsListController
     def create_student_window()
         win = FXBWindowStudent.new(window.app, window)
         win.create
+    end
+
+    def update_selection(start, finish)
+        self.list_short.clear_selection()
+        if start != -1
+            (start..finish).each { |index|
+                self.list_short.select(index)
+            }
+        end
+    end
+
+    def delete_selected_students()
+        ids = self.list_short.get_selected()
+        ids.each { |id|
+            self.list.remove_student(id)
+        }
+        self.list_short.clear_selection()
+        refresh_data()
     end
 end

@@ -22,6 +22,10 @@ class DataList
 			self.selected.delete_at(index)
 		end
 	end
+
+	def clear_selection()
+		self.selected.clear()
+	end
 	
 	def get_selected()
 		ids = []
