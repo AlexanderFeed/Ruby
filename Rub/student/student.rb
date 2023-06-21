@@ -5,7 +5,7 @@ class Student < BaseStudent
 	public attr_reader :name, :family, :patronymic
 	
 	### INITIALIZE
-	private
+	public
 	
 	def initialize(hash)
 		#name, family and patronymic are necessary, others optional

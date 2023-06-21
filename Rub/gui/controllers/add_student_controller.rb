@@ -25,8 +25,8 @@ class AddStudentController
         correct = correct && Student.is_name(self.window.name_field.text)
         correct = correct && Student.is_name(self.window.patronymic_field.text)
         correct = correct && Student.is_phone_number(self.window.phone_field.text)
-        correct = correct && Student.is_telegram(self.window.telegram_field.text)
-        correct = correct && Student.is_email(self.window.email_field.text)
+        #correct = correct && Student.is_telegram(self.window.telegram_field.text)
+        #correct = correct && Student.is_email(self.window.email_field.text)
         correct = correct && Student.is_git(self.window.git_field.text)
 
         if (correct)
